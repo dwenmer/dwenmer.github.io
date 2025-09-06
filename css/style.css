@@ -1,0 +1,320 @@
+/*
+ * SR-DEV-NOTE:
+ * Global Reset & Sensible Defaults
+ * Applying box-sizing: border-box globally makes layouts far more intuitive.
+ * Also setting up some CSS Custom Properties (variables) for maintainability.
+ * This is how you build a scalable stylesheet.
+*/
+:root {
+    --bg-color: #000000;
+    --text-color-primary: #cccccc;
+    --text-color-secondary: #aaaaaa;
+    --accent-color: #ffffff;
+    --border-color: #888888;
+    --shadow-color: rgba(255, 255, 255, 0.7);
+    --hover-shadow-color: #ffffff;
+
+    /* Font variables for consistency */
+    --font-family-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --font-size-base: 1.1rem;
+    --line-height-base: 1.6;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color-primary);
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    min-height: 100vh;
+    /* Ensures the body takes at least the full viewport height */
+}
+
+/* SR-DEV-NOTE: A generic container for subpages to keep content centered and constrained. */
+.container {
+    max-width: 900px;
+    margin: 2rem auto;
+    /* Use 'rem' for scalable spacing */
+    padding: 0 1rem;
+}
+
+/*
+ * SR-DEV-NOTE: Homepage Specific Styles
+ * Using Flexbox to center content is the modern, robust way.
+ * It's superior to the old `position: absolute; transform: translate(-50%, -50%);` hack.
+*/
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem;
+}
+
+.profile-figure img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    box-shadow: 0 0 15px var(--shadow-color);
+    margin-bottom: 3rem;
+    /* Increased margin for better spacing */
+}
+
+/* SR-DEV-NOTE: Grouped navigation elements for styling. */
+.main-nav,
+.footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    /* Allows buttons to wrap on smaller screens */
+    gap: 1rem;
+    justify-content: center;
+}
+
+.footer-nav {
+    margin-top: 2rem;
+}
+
+
+/*
+ * SR-DEV-NOTE: Reusable Button Component
+ * Abstracted the button style so it can be used anywhere.
+ * Using `rem` for padding and `em` for font-size makes it scale with user font settings.
+*/
+.button {
+    background: none;
+    color: var(--border-color);
+    border: 2px solid var(--border-color);
+    box-shadow: 0 0 15px var(--shadow-color);
+    text-decoration: none;
+    font-size: 1em;
+    padding: 0.6rem 1.2rem;
+    transition: all 0.3s ease-in-out;
+    /* Slightly faster, more common transition speed */
+    border-radius: 150px 0px 150px 0px;
+    cursor: pointer;
+}
+
+.button:hover,
+.button:focus {
+    /* SR-DEV-NOTE: Added :focus for keyboard navigation accessibility */
+    outline: none;
+    /* SR-DEV-NOTE: Remove default outline but we should add a custom focus style if needed */
+    border-color: var(--bg-color);
+    color: var(--accent-color);
+    box-shadow: 0 0.5em 2em -0.4em var(--hover-shadow-color);
+    transform: translateY(-0.25em);
+}
+
+/*
+ * SR-DEV-NOTE: Reusable Content Card Component
+ * Consolidated styles from `.aboutme` and `.resume-section` into one reusable, modular class. This is DRY (Don't Repeat Yourself) code.
+*/
+.content-card {
+    background-color: rgba(10, 10, 10, 0.5);
+    /* Slight background to distinguish from pure black */
+    color: var(--text-color-secondary);
+    padding: 2rem;
+    box-shadow: 0 0 15px var(--shadow-color);
+    transition: all 0.3s ease-in-out;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.content-card:hover {
+    color: var(--text-color-primary);
+    box-shadow: 0 0.5em 2em -0.4em var(--hover-shadow-color);
+    transform: translateY(-0.25em);
+}
+
+.content-card h1,
+.content-card h2 {
+    color: var(--text-color-primary);
+    font-size: 1.8em;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid var(--border-color);
+    padding-left: 10px;
+    transition: color 0.3s ease-in-out;
+}
+
+.content-card:hover h1,
+.content-card:hover h2 {
+    color: var(--accent-color);
+}
+
+.content-card p,
+.content-card ul {
+    margin-bottom: 1rem;
+}
+
+.content-card ul {
+    list-style-position: inside;
+    /* Keeps bullets aligned with the text block */
+    padding-left: 1rem;
+}
+
+.content-card li {
+    margin-bottom: 0.75rem;
+}
+
+.content-card p:last-child,
+.content-card ul:last-child {
+    margin-bottom: 0;
+}
+
+.content-card a {
+    color: var(--text-color-primary);
+}
+
+
+/* SR-DEV-NOTE: Specific styles for links and icons inside cards */
+.contact-links {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.contact-links p {
+    font-style: italic;
+    opacity: 0.8;
+}
+
+.icon-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.icon-links a {
+    color: inherit;
+    transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+.icon-links a:hover,
+.icon-links a:focus {
+    transform: translateY(-3px);
+    opacity: 0.7;
+}
+
+.course-link {
+    display: inline-block;
+    /* Allows transform to work properly */
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.course-link:hover,
+.course-link:focus {
+    color: var(--accent-color);
+    text-shadow: 0 0 8px var(--hover-shadow-color);
+    transform: translateX(5px);
+}
+
+/*
+ * SR-DEV-NOTE: Badge and Embed Styles
+ * Making iframes and other embeds responsive is non-negotiable.
+*/
+.badge-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.badge-container iframe {
+    border: none;
+    overflow: hidden;
+    max-width: 100%;
+    /* Ensures it shrinks to fit */
+    width: 350px;
+    height: 120px;
+}
+
+/* SR-DEV-NOTE: This is a clever CSS-only implementation. Good, but make sure it degrades gracefully. */
+.google-logo {
+    display: inline-block;
+    /* Use inline-block for proper spacing */
+    margin-right: 0.5em;
+    font-weight: bold;
+}
+
+.google-logo .g {
+    color: #4285F4;
+}
+
+.google-logo .o1 {
+    color: #EA4335;
+}
+
+.google-logo .o2 {
+    color: #FBBC05;
+}
+
+.google-logo .g2 {
+    color: #4285F4;
+}
+
+/* SR-DEV-NOTE: Corrected color, second G is usually blue */
+.google-logo .l {
+    color: #34A853;
+}
+
+.google-logo .e {
+    color: #EA4335;
+}
+
+
+/*
+ * SR-DEV-NOTE: THE ACTUAL TASK. Mobile Optimization.
+ * This is where the magic happens. A simple breakpoint is enough for this site.
+ * We adjust font sizes, padding, and layout for small screens.
+*/
+@media (max-width: 768px) {
+    :root {
+        --font-size-base: 1rem;
+    }
+
+    .container {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .profile-figure img {
+        width: 200px;
+        height: 200px;
+        margin-bottom: 2rem;
+    }
+
+    /* SR-DEV-NOTE: On mobile, let buttons stack naturally if they need to. */
+    .main-nav {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .button {
+        width: 80%;
+        text-align: center;
+    }
+
+    .content-card {
+        padding: 1.5rem;
+    }
+
+    .content-card h1,
+    .content-card h2 {
+        font-size: 1.5em;
+    }
+}
