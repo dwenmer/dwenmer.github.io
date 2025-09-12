@@ -181,6 +181,7 @@ body {
 .course-link {
     display: inline-block;
     text-decoration: none;
+
     transition: all 0.3s ease-in-out;
 }
 
@@ -284,4 +285,16 @@ body {
 .content-card ul:not(.certification-list) {
     list-style-position: outside;
     padding-left: 40px;
+}
+
+.certification-list li {
+    margin-bottom: 1.5rem;
+}
+
+
+.list-item-title {
+    display: block;
+    font-weight: bold;
+    color: var(--text-color-primary);
+    margin-bottom: 0.25rem;
 }
