@@ -275,11 +275,13 @@ body {
     }
 }
 
-.content-card ul {
-    /* Hält die Aufzählungspunkte links vom Text (Standardverhalten) */
-    list-style-position: outside;
 
-    /* Stellt den Innenabstand wieder her, der durch den Reset entfernt wurde.
-       40px ist ein üblicher Browser-Standardwert. */
+.certification-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.content-card ul:not(.certification-list) {
+    list-style-position: outside;
     padding-left: 40px;
 }
