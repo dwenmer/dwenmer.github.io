@@ -209,6 +209,16 @@ body {
     height: 120px;
 }
 
+/* Hidden on screen, still read by screen readers */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
 .google-logo {
     display: inline-block;
     margin-right: 0.5em;
